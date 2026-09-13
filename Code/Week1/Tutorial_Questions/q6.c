@@ -1,3 +1,5 @@
+// Implementation of q6.c, rewriting the while loop as a for loop.
+
 #include <stdio.h>
 
 // Rewritten for loop version

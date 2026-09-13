@@ -1,6 +1,10 @@
 # Conversion of the original C code into x86 assembly. Note: do not need to understand what is happening
 # here exactly. Important sections are .text (containing the translated lines of code), and the
 # mentions of the .rodata (read-only data) section, containing the string literal "Hi".	
+
+# (In MIPS assembly there's just one .data segment, but compiling C code produces files that
+# split the data segment to .data, which holds global variables and arrays, and can be modified, and
+# .rodata, where the string literals go and which is read-only (hence ro).)
     
     .text
 	.file	"q10.c"

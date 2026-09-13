@@ -1,3 +1,5 @@
+// Implementation of q7.c, with a recursive function summing from 0 to n.
+
 #include <stdio.h>
 
 int sum(int n);
@@ -24,11 +26,11 @@ int sum(int n) {
     return n + sum(n - 1);
 }
 
-// // Original iterative solution
-// int sum_iterative(int n) {
-//     int result = 0;
-//     for (int i = 0; i <= n; i++) {
-//         result += i;
-//     }
-//     return result;
-// }
+// Original iterative solution
+int sum_iterative(int n) {
+    int result = 0;
+    for (int i = 0; i <= n; i++) {
+        result += i;
+    }
+    return result;
+}

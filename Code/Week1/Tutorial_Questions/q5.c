@@ -1,3 +1,6 @@
+// Implementation of q5.c - a program that counts the number
+// of chars read in. Implemented using getchar()!
+
 #include <stdio.h>
 
 int main(void) {

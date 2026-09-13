@@ -1,3 +1,6 @@
+// Fixed version of q4.c, with null terminator added to
+// indicate appropriate end of string!
+
 #include <stdio.h>
 
 int main(void) {

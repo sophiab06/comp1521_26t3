@@ -1,3 +1,6 @@
+// Fixed version of q3.c, using malloc to avoid the variable being destroyed 
+// by the stack frame of the get_num_ptr() function being torn down!
+
 #include <stdio.h>
 #include <stdlib.h>
 
