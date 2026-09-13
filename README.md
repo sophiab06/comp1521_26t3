@@ -1,2 +1,2 @@
-# comp1521_26t3
-Contains all of the code that we go through in our tutorials, along with solution versions, PDF copies of the slides, and any extra resources.
+# Welcome Class!
+This repo contains all code that we will work on in our tutorials, along with extra resources and PDF copies of the slides. Before classes it will be updated with starter code; after them, with solutions.
