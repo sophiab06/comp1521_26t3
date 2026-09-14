@@ -1,24 +1,29 @@
+// Implementation of q7.c, with a recursive function summing from 0 to n.
+
 #include <stdio.h>
 
 int sum(int n);
-int sum_iterative(int n);
 
 int main(int argc, char *argv[]) {
-    int n;
-    printf("Enter a number: ");
-    scanf("%d", &n);
+        int n;
+        printf("Enter a number: ");
+        scanf("%d", &n);
 
-    int result = sum(n);
-    printf("Sum of all numbers up to %d = %d\n", n, result);
+        int result = sum(n);
+        printf("Sum of all numbers up to %d = %d\n", n, result);
 
-    return 0;
+        return 0;
 }
 
 // Implemented recursive solution
 int sum(int n) {
-    // TO DO:
-    // Implement a recursive summing function with the same behaviour
-    // as sum_iterative.
+    // Base case
+    if (n == 0) {
+        return 0;
+    }
+
+    // General case
+    return n + sum(n - 1);
 }
 
 // Original iterative solution

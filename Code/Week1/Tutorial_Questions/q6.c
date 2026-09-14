@@ -1,10 +1,16 @@
+// Implementation of q6.c, rewriting the while loop as a for loop.
+
 #include <stdio.h>
 
 // Rewritten for loop version
 int main(void) {
-    // TO DO:
-    // rewrite the while loop in main_original(), using a for loop
-    // instead!
+    // Since i is initialised inside the loop structure, once outside
+    // the for loop we cannot access the contents of it again!
+    for (int i = 0; i < 10; i++) {
+        printf("%d\n", i);
+    }
+
+    return 0;
 }
 
 // Original while loop version
