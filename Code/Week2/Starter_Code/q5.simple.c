@@ -1,3 +1,5 @@
+// Simple C code for question 5 of the tutorial!
+
 #include <stdio.h>
 
 #define SQUARE_MAX 46340

@@ -1,4 +1,4 @@
-# Written together in the tutorial, an implementation of a simple for loop in MIPS. More comments added in post!
+# An implementation of a simple for loop in MIPS. More comments added in post!
 
 main:
 loop_init:
