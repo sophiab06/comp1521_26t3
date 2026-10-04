@@ -1,29 +1,19 @@
-# An incomplete implementation of question 6 from the Week 3 Tutorial.
-
-# CODE TO TRANSLATE:
-# #define N_SIZE 10
-
-# #include <stdio.h>
-
-# int main(void) {
-#     int i;
-#     int numbers[N_SIZE] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-
-#     i = 0;
-#     while (i < N_SIZE) {
-#         printf("%d\n", numbers[i]);
-#         i++;
-#     }
-# }
-
+# Commented up version of the loop printing the contents of an array of ints that we ran through in the tutorial!
 
 N_SIZE = 10
+
+PRINT_STRING = 4
 
 	.text
 main:
 	# Register allocations:
 	# $t0 - int i
+	# $t1 - temporary offset calcs
 	# $a0, $v0 - syscalls
+	
+	li	$v0, PRINT_STRING
+	la	$a0, expected_output_str
+	syscall					# printf("The expected output (with each on a new line) is 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.\n");
 
 loop_init:
 	li	$t0, 0				# int i = 0;
@@ -32,7 +22,15 @@ loop_cond:
 	bge	$t0, N_SIZE, loop_end		# while (i < N_SIZE)
 
 loop_body:
-	# TO DO: translate printf("%d\n", numbers[i]);
+	mul	$t1, $t0, 4 			# Each element in our array is 4 bytes in size - need to convert the index to an offset in bytes!
+	lw	$a0, numbers($t1)		# $a0 holds numbers[i]
+
+	li	$v0, 1
+	syscall					# printf("%d", numbers[i]);
+
+	li	$v0, 11
+	li	$a0, '\n'
+	syscall					# putchar('\n');
 
 loop_step:
 	addi	$t0, 1				# i++;
@@ -45,3 +43,6 @@ loop_end:
 	.data
 numbers:
 	.word 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+
+expected_output_str:
+	.asciiz	"The expected output (with each on a new line) is 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.\n"

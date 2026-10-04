@@ -51,7 +51,7 @@ epilogue:
 	.data
 random_str:
 	.asciiz "hello!!\n"
-	.align	1
+	# .align	2
 
 random_int:
 	.space	4
