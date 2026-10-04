@@ -2,12 +2,19 @@
 
 N_SIZE = 10
 
+PRINT_STRING = 4
+
 	.text
 main:
 	# Register allocations:
 	# $t0 - int i
 	# $t1 - temporary offset calcs
 	# $a0, $v0 - syscalls
+	
+	li	$v0, PRINT_STRING
+	la	$a0, expected_output_str
+	syscall					# printf("The expected output (with each on a new line) is 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.\n");
+
 loop_init:
 	li	$t0, 0				# int i = 0;
 
@@ -36,3 +43,6 @@ loop_end:
 	.data
 numbers:
 	.word 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+
+expected_output_str:
+	.asciiz	"The expected output (with each on a new line) is 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.\n"
