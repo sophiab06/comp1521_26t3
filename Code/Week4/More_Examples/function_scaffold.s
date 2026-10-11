@@ -2,19 +2,23 @@
 # Annotated skeleton of how to structure a function in MIPS.
 
 some_function:
-    # Frame:    [$ra, $s0, $s1]   
-    # Uses:     [$ra, $s0, $s1, $t0, $t1, $a0]
-    # Clobbers: [$t0, $t1, $a0]
+    # Frame:    All registers pushed/popped - usually $ra and $s regs only (example: [$ra, $s0, $s1]) 
+    # Uses:     All registers in either "frame" or "clobbers" (example: [$ra, $s0, $s1, $t0, $t1, $a0])
+    # Clobbers: All registers whose contents are overwritten without pushing/popping (example: [$t0, $t1, $a0])
     #
-    # Locals:           
+    # Locals:         
+    # List of all registers with what they were used for explained briefly. Example presented below!  
     #   - $t0 - scan loop counter, temp calculations
     #	- $t1 - offset calculations
     #	- $a0 - function calling arguments
     # 	- $s0 - int num
     #	- $s1 - int num_2
     #
-    # Structure:        
-    #   max
+    # Structure:
+    # All of the labels in the program indented to show control flow/match the indentation
+    # of original code!
+    # E.g in the below example we can see that the if statement is outside of the scan loop!
+    # some_function
     #   -> [prologue]
     #       -> body
     #	        -> scan_loop
