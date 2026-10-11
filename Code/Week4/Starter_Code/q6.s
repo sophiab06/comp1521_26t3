@@ -1,3 +1,6 @@
+# Implementation of question 6 for the Week 4 tutorial, with commenting
+# and filling in the function comment!
+
 ## Code to translate:
 # int max(int array[], int length) {
 #     // 
@@ -91,23 +94,55 @@ main__epilogue:
 	jr	$ra		 	# return 0
 
 max:
-    # Frame:    [...]   <-- FILL THESE OUT!
-    # Uses:     [...]
-    # Clobbers: [...]
+    # Frame:    [$ra, $s0]  
+    # Uses:     [$ra, $s0, $a0, $a1, $v0]
+    # Clobbers: [$a0, $a1, $v0]
     #
-    # Locals:           <-- FILL THIS OUT!
-    #   - ...
+    # Locals:
+    # 	- $s0 - int first_element
+    # 	- $a0 - int array[] (we don't need post-function call)
+    # 	- $a1 - int length (we don't need post-function call)
+    # 	- $v0 - max_so_far
     #
-    # Structure:        <-- FILL THIS OUT!
+    # Structure:       
     #   max
     #   -> [prologue]
     #       -> body
+    #          -> length_eq_1
+    #          -> length_gt_1
+    #          -> first_gt_max_so_far
     #   -> [epilogue]
+    
+
 max__prologue:
+	push	$ra
+	push	$s0
 
 max__body:
+	lw	$s0, ($a0)			# int first_element = array[0];
+
+	beq	$a1, 1, max__length_eq_1 	# if (length == 1)	
+	j	max__length_gt_1
+
+max__length_eq_1:			
+	move	$v0, $s0			
+	j	max__epilogue			# return first_element	
+
+max__length_gt_1:				# else
+	addi	$a0, $a0, SIZE_OF_INT		# index 1 integer into the array - equal to going from &array[0] to &array[1]
+	sub	$a1, $a1, 1			# $a1 = length - 1
+
+	jal	max				# call max(&array[1], length - 1); $v0 = max_so_far
+
+	ble	$s0, $v0, max__epilogue		# if (first_element > max_so_far)
+
+max__first_gt_max_so_far:
+	move	$v0, $s0			# max_so_far = first_element
 
 max__epilogue:
+	pop	$s0
+	pop	$ra
+
 	jr	$ra
 
 

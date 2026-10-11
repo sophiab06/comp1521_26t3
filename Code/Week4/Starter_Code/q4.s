@@ -1,3 +1,5 @@
+# Complete implementation of question 4 from Week 4 tutorial!
+
 # A topographic map!
 # This helpful tool will tell explorers how much they need to climb to
 # reach various points of interest.
@@ -20,6 +22,12 @@ SIZE_OF_INT = 4
 main:
 	# Registers:
 	#   - $t0: int i, the loop counter
+	#   - $t1: row of the current point
+	#   - $t2: col of the current point
+	#   - $t3: height of the current point
+	#   - $t4: temporary result for array indexing
+	#   - $t5: temporary result for array indexing
+	#   - $t6: address of my_points[i]/offset into topography_grid
 
 						# Loop over all elements, and print their data
 points_loop_init:				# for (int i = 0; i < N_POINTS; i++) {
@@ -29,10 +37,16 @@ points_loop_cond:
 	bge	$t0, N_POINTS, points_loop_end	# if (i >= N_POINTS)
 	
 point_loop_body:
-	# TO DO: translate the following:
-	# int row = my_points[i].row;
-        # int col = my_points[i].col;
-	# int height = topography_grid[row][col];
+	mul	$t6, $t0, SIZE_OF_POINT		# conversion of index i into offset
+	addi	$t6, $t6, my_points		# $t6 holds &my_points[i]
+
+	lw	$t1, POINT_ROW_OFFSET($t6)	# int row = my_points[i].row
+	lw	$t2, POINT_COL_OFFSET($t6)	# int col = my_points[i].col;
+
+	mul	$t6, $t1, MAP_SIZE		# index = row * number of columns (MAP_SIZE in this case!)
+	add	$t6, $t6, $t2			# index += col
+	mul	$t6, $t6, SIZE_OF_INT		# conversion of index to offset
+	lw	$t3, topography_grid($t6)	# int height = topography_grid[row][col]; 
 
 						# printf("Height at %d,%d=%d\n", row, col, height);
 

@@ -1,3 +1,5 @@
+# Completed and commented-out implementation of question 2 from the week 4 tutorial!
+
 ## Code to translate:
 # #include <stdio.h>
 
@@ -56,7 +58,15 @@ inner_loop_cond:
 	bge	$t1, FLAG_COLS, inner_loop_end		# while (col < FLAG_COLS)
 
 inner_loop_body:
-	# TO DO: translate printf("%c", flag[row][col]);
+	mul	$t2, $t0, FLAG_COLS			# index = row * FLAG_COLS
+	add	$t2, $t2, $t1				# index += col
+	mul	$t2, $t2, SIZE_OF_CHAR			# conversion to offset
+
+	lb	$t3, flag($t2)				# $t3 = flag[row][col]
+
+	li	$v0, PRINT_CHAR
+	move	$a0, $t3
+	syscall						# printf("%c", flag[row][col]);
 
 inner_loop_step:
 	addi	$t1, 1					# col += 1

@@ -1,3 +1,6 @@
+# Implementation of question 5 from Week 4! (note - will do nothing when ran due to absence
+# of main function calling it!)
+
 ## Code to translate:
 # void change (int nrows, int ncols, int M[nrows][ncols], int factor)
 # {
@@ -14,7 +17,6 @@ change:
 # - $t1 - int col
 # - $t2 - index into the 2D array
 # - $t3 - M[row][col]
-# - 
 
 change__prologue:
 change__body:
@@ -34,7 +36,16 @@ change__inner_loop__cond:
 	bge	$t1, $a1, change__inner_loop__end	# while (col < ncols)
 
 change__inner_loop__body:
-	# TO TRANSLATE: M[row][col] = factor * M[row][col];
+	mul	$t2, $t0, $a1 				# index = row * ncols
+	add	$t2, $t2, $t1				# index += col
+
+	mul	$t2, $t2, 4				# conversion to offset
+	add	$t2, $t2, $a2				# get absolute address via M's 
+							# address + offset into M
+
+	lw	$t3, ($t2)				# $t3 holds M[row][col]
+	mul	$t3, $t3, $a3 				# $t3 = factor * M[row][col];
+	sw	$t3, ($t2)				# M[row][col] = factor * M[row][col]
 
 change__inner_loop__step:
 	addi	$t1, 1					# col += 1;
