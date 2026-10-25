@@ -29,7 +29,11 @@ int main(void) {
 uint32_t six_middle_bits(uint32_t input_num) {
     // TO DO: complete!
     // HINT - define a custom mask, perhaps?
-    return 0;
+
+    uint32_t mask = 0b111111;
+    mask = mask << 13;
+    mask = mask & input_num;
+    return mask;
 }
 
 // Function which prints a 32 bit integer bit by bit on a new line!

@@ -29,7 +29,20 @@ int main(void) {
 // Function which reverses the bits of the given integer!
 Word reverse_bits(Word input_num) {
     // TO DO: complete!
-    return 0;
+    Word output = 0;
+    
+    for (int i = 0; i < INT_NUM_BITS; i++) {
+        Word mask = 1;
+
+        mask = mask << i;
+        mask = mask & input_num;
+        mask = mask >> i;
+
+        mask = mask << (INT_NUM_BITS - i - 1);
+        output = output | mask;
+    }
+
+    return output;
 }
 
 // Function which prints a 32 bit integer bit by bit on a new line!
