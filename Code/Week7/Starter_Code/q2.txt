@@ -1,0 +1,6 @@
+Convert the following decimal numbers into IEEE 754-encoded bit-strings:
+
+a. 2.5
+b. 0.375
+c. 27.0
+d. 100.0

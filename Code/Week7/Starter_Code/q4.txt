@@ -1,0 +1,10 @@
+Give a representation for each of the following decimal values in 16-bit twos-complement bit-strings. 
+Show the value in binary, octal and hexadecimal.
+
+a. 1
+b. 100
+c. 1000
+d. 10000
+e. 100000
+f. -5
+g. -100
