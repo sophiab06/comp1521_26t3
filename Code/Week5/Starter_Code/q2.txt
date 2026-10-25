@@ -1,11 +1,22 @@
+Completed version of the conversion from decimal to different
+bases!
 
-Decimal     Binary      Hexadecimal     Octal
----------------------------------------------
-1
-8
-10
-15
-16
-100
-127
-200
+Decimal     Working Out                         Binary          Hexadecimal     Octal
+----------------------------------------------------------------------------------------
+1                                               0b 1            0x1             01
+8                                               0b 1000         0x8             010
+10        10 = 8 + 2                            0b 1010         0xA             012
+15        15 = 8 + 4 + 2 + 1                    0b 1111         0xF             017
+16                                              0b 1 0000       0x10            020
+100       100 = 64 + 32 + 4                     0b 110 0100     0x64            0144
+127       127 = 64 + 32 + 16 + 8 + 4 + 2 + 1    0b 111 1111     0x7F            0177
+200       200 = 128 + 64 + 8                    0b 1100 1000    0xA8            0310
+
+Another way of figuring out the binary form of a decimal by hand is to find the highest 
+power of 2 smaller than the number and subtract that, repeating until we've broken down 
+the numberinto a sum of powers of two. For example, the highest power of 2 under 200
+is 128, the difference is 72. The highest power of 2 under 72 is 64 with a difference of 8,
+another power of 2. 
+
+This relies on you knowing large powers of two, however: if you need to do it manually
+the "dividing by two repeatedly" method works better. Alternatively, use Python!
