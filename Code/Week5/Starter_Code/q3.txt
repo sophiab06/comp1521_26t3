@@ -1,16 +1,25 @@
-uint16_t a = 0x5555, b = 0xAAAA, c = 0x0001;
+Completed version of bitwise operation practice!
+
+Given: uint16_t a = 0x5555, b = 0xAAAA, c = 0x0001;
 
 As binary:
 a = 0b 0101 0101 0101 0101
 b = 0b 1010 1010 1010 1010
 c = 0b 0000 0000 0000 0001
 
-a | b:
-a & b:
-a ^ b:
-a & ~b:
-c << 6:
-a >> 4:
-a & (b << 1):
-b | c:
-a & ~c:
+                    Working Out                     Binary                      Hexadecimal
+---------------------------------------------------------------------------------------------
+a | b:                                              0b 1111 1111 1111 1111      0xFFFF
+a & b:                                              0b 0000 0000 0000 0000      0x0
+a ^ b:                                              0b 1111 1111 1111 1111      0xFFFF
+a & ~b:         ~b: 0b 0101 0101 0101 0101          0b 0101 0101 0101 0101      0x5555
+c << 6:                                             0b 0000 0000 0100 0000      0x0040
+a >> 4:         Unsigned - padded with zeroes!      0b 0000 0101 0101 0101      0x0555
+a & (b << 1):   b << 1: 0b 0101 0101 0101 0100      0b 0101 0101 0101 0100      0x5554
+b | c:                                              0b 1010 1010 1010 1011      0xAAAB
+a & ~c:         ~c: 0b 1111 1111 1111 1110          0b 0101 0101 0101 0100      0x5554
+
+If working out by hand, make sure that you perform bitwise ops right to left to
+align appropriately the bits (for example in the case below!):
+num_1 = 0b 01
+unm_2 = 0b 1001 1101

@@ -1,10 +1,11 @@
-// Partially completed implementation of question 8 from the Week 5 tutorial!
+// Completed implementation of question 8 from the Week 5 tutorial!
 
 #include <stdint.h>
 #include <stdio.h>
 
 #define BINARY_PREFIX_STR "0b"
 #define INT_NUM_BITS 32
+#define WORD_NUM_BITS 32
 
 typedef unsigned int Word;
 
@@ -28,8 +29,31 @@ int main(void) {
 
 // Function which reverses the bits of the given integer!
 Word reverse_bits(Word input_num) {
-    // TO DO: complete!
-    return 0;
+    Word output_num = 0;
+
+    // We want the 31st bit of output_num to be set to the
+    // 0th bit of input_num, 30th bit of output to be 1st bit of
+    // input, etc... If you follow this logic, we see that we want
+    // the nth bit of input_num to set the 31 - nth bit of output_num!
+    // Let's do this bit by bit
+    for (int i = 0; i < WORD_NUM_BITS; i++) {
+        Word curr_bit_mask = 0b1;
+
+        // Get the nth bit from input_num
+        curr_bit_mask = curr_bit_mask << i;
+        curr_bit_mask = curr_bit_mask & input_num;
+        curr_bit_mask = curr_bit_mask >> i;
+
+        // Set the WORD_NUM_BITS - 1 - nth bit in output_num
+        // to be that value!
+        // Note: WORD_NUM_BITS = 32, so WORD_NUM_BITS - 1 = 31 like
+        // we saw before.
+        curr_bit_mask = curr_bit_mask << (WORD_NUM_BITS - 1 - i);
+        output_num = output_num | curr_bit_mask;
+
+    }
+    
+    return output_num;
 }
 
 // Function which prints a 32 bit integer bit by bit on a new line!

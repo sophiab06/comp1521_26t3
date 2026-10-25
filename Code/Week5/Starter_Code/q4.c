@@ -1,4 +1,4 @@
-// Partially completed implementation of question 4 from the Week 5 tutorial!
+// Completed implementation of question 4 from the Week 5 tutorial!
 
 #include <stdint.h>
 #include <stdio.h>
@@ -27,9 +27,17 @@ int main(void) {
 // Function which returns the 6 middle bits (note - leaving them in the
 // same position, i.e. something like 00...00XXXXXX00...00)
 uint32_t six_middle_bits(uint32_t input_num) {
-    // TO DO: complete!
-    // HINT - define a custom mask, perhaps?
-    return 0;
+    // Making a mask of the same size that selects (masks out all but) 6 bits!
+    uint32_t mask = 0b111111;
+
+    // Move the mask to the right place!
+    // The middle 6 bits are 18th, 17th, 16th, 15th, 14th, 13th bits.
+    // We need the mask's current 0th bit to end up on the 13th place.
+    mask = mask << 13;
+
+    // The mask now holds the bit values we wanted!
+    mask = mask & input_num;
+    return mask;
 }
 
 // Function which prints a 32 bit integer bit by bit on a new line!
