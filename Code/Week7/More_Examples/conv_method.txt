@@ -1,0 +1,15 @@
+If you want to figure out the binary digits that make up a
+decimal fraction, a good process is as follows:
+
+E.g convert 0.2 to binary.
+
+0.2 * 2 = 0.4 <- take digit before decimal point as value 
+0.4 * 2 = 0.8    of that bit (going left from decimal point)
+0.8 * 2 = 1.6 <- carry over the fraction portion (0.X) from 
+0.6 * 2 = 1.2    this line to next!
+0.2 * 2 = 0.4
+... repeats
+
+Therefore, reading from top to bottom, 0.2 in binary is 
+0.00110011....
+
