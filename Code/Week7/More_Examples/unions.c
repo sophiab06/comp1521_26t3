@@ -36,9 +36,9 @@ int main(void) {
     union _all var;
     var.uval = 0x00313233;
 
-    printf("Value inside the union - 0x00313233 (stored as 0x33 0x32 0x31 0x00 "
+    printf("Value inside the _all type union - 0x00313233 (stored as 0x33 0x32 0x31 0x00 "
     "in memory due to our computers being little-endian!)\n");
-    printf("uval in hex (contents as unsigned ints): %x\n", var.uval);
+    printf("uval in hex (contents as unsigned ints): 0x%x\n", var.uval);
     printf("ival (contents as int): %d\n", var.ival);
     printf("cval (contents as one char): %c\n", var.cval);
     printf("sval (contents as 3 char + '\\0' string): %s\n", var.sval);
@@ -46,6 +46,7 @@ int main(void) {
     // subnormal - actually v. close to 0 and just not printing well here.
     printf("fval (contents as float): %f\n", var.fval);
     printf("Note: above is subnormal (due to exponent being all 0s), very close but not 0.\n");
+    printf("Also, on x86 architecture (like our computers), floats are also stored as little endian, like the ints!\n");
     printf("fval (contents as float, printed in exponential mode): %e\n", var.fval);
 
     return 0;
