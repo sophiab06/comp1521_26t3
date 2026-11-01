@@ -1,0 +1,99 @@
+Worked solutions for question 1 of the Week 7 Tutorial!
+
+Give a representation for each of the following decimal values in 16-bit twos-complement bit-strings. 
+Show the value in binary, octal and hexadecimal.
+
+a. 1
+
+Solution:
+1 is a positive number, so it's stored the same way it would be
+natively written in binary!
+
+Note - spaces have been added for legibility/to match hexadecimal to every
+4 bits. Please do not add spacing in C - will cause errors!
+
+Binary:         0b 0000 0000 0000 0001
+Hexadecimal:    0x 0    0    0    1
+Octal:          0  000001
+
+
+b. 100
+
+Solution:
+100 is positive, so it's stored the same way as when written in
+binary!
+Using the "dividing by two repeatedly" algorithm to find the
+binary representation (can also use bin() in python!)
+
+100 / 2 = 50 r 0
+50 / 2  = 25 r 0
+25 / 2  = 12 r 1
+12 / 2  = 6  r 0
+6 / 2   = 3  r 0
+3 / 2   = 1  r 1
+1 / 2   = 0  r 1
+
+Therefore 100 = 0b1100100
+
+Padded to 16 bits:
+Binary:         0b 0000 0000 0110 0100
+Hexadecimal:    0x 0    0    6    4
+Octal:          0  000144
+
+c. 1000
+Solution: 1000 is positive, so is stored the same way as when just
+written out in binary!
+
+Using the bin() function in Python to get the binary representation (for sanity):
+1000 = 0b1111101000
+
+Padded to 16 bits:
+Binary:         0b 0000 0011 1110 1000
+Hexadecimal:    0x 0    3    E    8
+Octal:          0  001750
+
+d. 10000
+Solution: 10000 is positive, so is stored the same way as when just
+written out in binary!
+
+Using the bin() function in Python to get the binary representation (for sanity):
+10000 = 0b10011100010000
+
+Padding out to 16 bits:
+Binary:         0b 0010 0111 0001 0000
+Hexadecimal:    0x 2    7    1    0
+Octal:          0  023420
+
+e. 100000
+Solution: 100000 is positive, so is stored the same way as when just
+written out in binary!
+
+Using the bin() function in Python to get the binary representation (for sanity):
+100000 = 0b11000011010100000
+
+However, 17 bits are necessary to represent the number. Therefore, we *cannot*
+represent 100000 in a 16-bit integer - there is simply not enough space!
+
+f. -5
+Solution: Since -5 is negative, the easiest approach is to find the binary
+representation of positive 5, the flip all of the bits and add 1 to it!
+
++5 in binary:       0b 101
+Padded to 16 bits:  0b 0000 0000 0000 0101
+All bits flipped:   0b 1111 1111 1111 1010
+Add 1:              0b 1111 1111 1111 1011
+
+Hexadecimal:        0x F    F    F    B
+Octal:              0 177763
+
+g. -100
+Solution: Since -100 is negative, the easiest approach is to find the binary
+representation of positive 100, the flip all of the bits and add 1 to it!
+
++100 in binary (from b):    0b 1100100
+Padded out to 16 bits:      0b 0000 0000 0110 0100
+All bits flipped:           0b 1111 1111 1001 1011
+One added:                  0b 1111 1111 1001 1100
+
+Hexadecimal:                0x F    F    9    C
+

@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 int main(void) {
+    // Note - a signed 32-bit int can hold up to 2,147,483,647 fine, without precision issues.
     float i = 16777210;
     char input;
 

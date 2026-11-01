@@ -1,0 +1,70 @@
+Worked solutions for question 3 of the week 7 tutorial!
+
+Assume that the following hexadecimal values are 16-bit twos-complement. Convert each to the 
+corresponding decimal value.
+
+a. 0x0013
+
+Solution:
+Step 1 is to convert into 16-bit binary!
+
+Binary:     0b 0000 0000 0001 0011
+
+First bit is 0 - therefore, the number is positive!
+The represented integer is 1 + 2 + 16 = 19.
+
+
+b. 0x0444
+Solution:
+Step 1 is to convert into 16-bit binary!
+
+Binary:     0b 0000 0100 0100 0100
+
+First bit is 0 - therefore, the number is positive!
+The represented integer, found using Python (via int(0x0444)) is 1092.
+
+
+c. 0x1234
+Solution:
+Step 1 is to convert into 16-bit binary!
+
+Binary:     0b 0001 0010 0011 0100
+
+First bit is 0 - therefore, the number is positive!
+The represented integer, found using Python (via int(0x0444)) is 4660.
+
+d. 0xffff
+Solution:
+Step 1 is to convert into 16-bit binary!
+
+Binary:         0b 1111 1111 1111 1111
+
+First bit is 1 - therefore, this is a negative number! To find what number
+this is the negative of, we can flip all of the bits and add one.
+
+Bits flipped:   0b 0000 0000 0000 0000
+Add 1:          0b 0000 0000 0000 0001
+
+Therefore, this is the negative of 1, aka -1 being represented!
+
+NOTE: if these had been 32-bit two's complement, the first bit would have
+been 0, not 1, as there would have been 16 extra bits at the front set to 0.
+
+e. 0x8000
+Solution:
+Step 1 is to convert into 16-bit binary!
+
+Binary:         0b 1000 0000 0000 0000
+
+First bit is 1 - therefore, this is a negative number! To find what number
+this is the negative of, we can flip all of the bits and add one.
+
+Bits flipped:   0b 0111 1111 1111 1111 
+Add 1:          0b 1000 0000 0000 0000      = 32768
+
+Therefore, the number being represented is -32768, and it is impossible to
+represent +32768 as the bit pattern that would correspond to it is already
+taken up by -32768.
+
+In general, for an n-bit size signed data type, the numbers -2^(n - 1) to 2^(n - 1) - 1
+can be represented.

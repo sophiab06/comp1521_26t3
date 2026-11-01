@@ -1,0 +1,124 @@
+What decimal numbers do the following single-precision IEEE 754-encoded bit-strings represent?
+
+a. 0 00000000 00000000000000000000000
+Solution:
+
+Since the fraction and exponent are all 0s, this is one of the special cases!
+This represents +0, since the sign bit is 0 (positive).
+
+b. 1 00000000 00000000000000000000000
+Solution:
+
+Since the fraction and exponent are all 0s, this is one of the special cases!
+This represents -0, since the sign bit is 1 (negative).
+
+
+c. 0 01111111 10000000000000000000000
+Solution:
+
+This is not one of the special cases, so we need to break down and actually parse
+the number!
+
+Step 1: Getting scientific notation components from the number
+Sign bit = 0, so number is positive
+Real exponent = stored exponent - 127 = 0
+Fraction = 0b 1000...., therefore full scientific 
+notation fract = 0b 1.10000...
+
+Therefore, the stored number is 0b 1.1 * 2^0 = 0b 1.1
+
+Step 2: Rewrite as decimal!
+0b 1.1 = 1 + 2^(-1) = 1.5
+
+d. 0 01111110 00000000000000000000000
+Solution:
+
+This is not one of the special cases, so we need to break down and actually parse
+the number!
+
+Step 1: Getting scientific notation components from the number
+Sign bit = 0, so number is positive
+Real exponent = stored exponent - 127 = -1
+Fraction = 0b 000...., therefore scientific 
+notation fract = 0b 1.0000...
+
+Therefore, the stored number is 0b 1.0 * 2^(-1) = 0b 0.1
+
+Step 2: Rewrite as decimal!
+0b 0.1 = 2^(-1) = 0.5
+
+e. 0 01111110 11111111111111111111111
+Solution:
+
+This is not one of the special cases, so we need to break down and actually parse
+the number!
+
+Step 1: Getting scientific notation components from the number
+Sign bit = 0, so number is positive
+Real exponent = stored exponent - 127 = -1
+Fraction = 0b 11111111111111111111111, therefore scientific 
+notation fract = 0b 1.11111111111111111111111.
+
+Therefore, the stored number is 0b 1.11111111111111111111111 * 2^(-1)
+= 0b 0.1111 1111 1111 1111 1111 1111
+
+Step 2: Rewrite as decimal
+0b 0.1111 1111 1111 1111 1111 1111 = 2^(-1) + 2^(-1) + 2^(-3) ... + 2^(-24)
+= 0.5 + 0.25 + 0.125 + ...
+= 0.9999999403953552
+
+f. 0 10000000 01100000000000000000000
+Solution:
+
+This is not one of the special cases, so we need to break down and actually parse
+the number!
+
+Step 1: Getting scientific notation components from the number
+Sign bit = 0, so number is positive
+Real exponent = stored exponent - 127 = 1
+Fraction = 0b 011000..., therefore scientific 
+notation fract = 0b 1.011.
+
+Therefore, the stored number is 0b 1.011 * 2^1 = 0b 10.11
+
+Step 2: Rewrite as decimal
+0b 10.11 = 2^1 + 2^(-1) + 2^(-2)
+= 2.75
+
+g. 0 10010100 10000000000000000000000
+Solution:
+
+This is not one of the special cases, so we need to break down and actually parse
+the number!
+
+Step 1: Getting scientific notation components from the number
+Sign bit = 0, so number is positive
+Real exponent = stored exponent - 127 = 21
+Fraction = 0b 1000..., therefore scientific 
+notation fract = 0b 1.1.
+
+Therefore, the stored number is 0b 1.1 * 2^21 = 0b 11 0000 0000 0000 0000 0000
+
+Step 2: Rewrite as decimal
+Using Python's int() (as only an integer component):
+0b 11 0000 0000 0000 0000 0000 = 3145728
+
+h. 0 01101110 10100000101000001010000
+Solution:
+
+This is not one of the special cases, so we need to break down and actually parse
+the number!
+
+Step 1: Getting scientific notation components from the number
+Sign bit = 0, so number is positive
+Real exponent = stored exponent - 127 = -17
+Fraction = 0b 10100000101000001010000..., therefore scientific 
+notation fract = 0b 1.1010000010100000101.
+
+Therefore, the stored number is 0b 1.1010000010100000101 * 2^-17 
+= 0b 0.000000000000000011010000010100000101
+
+Step 2: Rewrite as decimal
+0b 0.0000 0000 0000 0000 1101 0000 0101 0000 0101 
+= 2^(-17) + 2^(-18) + 2^(-20) + 2^(-26) + 2^(-28) + 2^(-34) + 2^(-36)
+= 1.2416465324349701 * 10^-5

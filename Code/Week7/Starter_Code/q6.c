@@ -1,3 +1,5 @@
+// A completed implementation of question 6 from the week 7 tutorial!
+
 #include <stdio.h>
 
 int main(void) {
