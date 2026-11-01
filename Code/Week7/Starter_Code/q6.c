@@ -1,3 +1,5 @@
+// A completed implementation of question 6 from the week 7 tutorial!
+
 #include <stdio.h>
 
 int main(void) {
@@ -11,7 +13,18 @@ int main(void) {
     // (note the lack of space before the %c in scanf) and 
     // prints it immediately.
 
-    // TO DO: rewrite the above using fread() and fwrite()!
+    // Since terminals are just treated as custom files,
+    // we can use standard file functions with the special
+    // stdin (to get input) and stdout (to print non-error
+    // output) file streams and it works!
+    // Example as below.
+
+    // Reads one element one byte in size from stdin, storing
+    // in c
+    fread(&c, 1, 1, stdin);
+
+    // Writes one element one byte in size from c to stdout
+    fwrite(&c, 1, 1, stdout);
 
     return 0;
 }
