@@ -9,5 +9,8 @@ int main(void) {
     // TO DO: Complete
     // Run with the "hex numbers" file!
 
+    char *string = "blah";
+    printf("%s\n", string);
+
     return 0;
 }
