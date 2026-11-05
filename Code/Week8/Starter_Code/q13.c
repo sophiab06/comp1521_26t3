@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     // Check correct num command line arguments
     if (argc != 2) {
         fprintf(stderr, "Needs 1 user-inputted argument - the input file name!\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     // Open the file with name given as command line arg 1
@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
     // Error check - did fopen work?
     if (file == NULL) {
         perror("main");            
-        exit(1);                    
+        exit(EXIT_FAILURE);              
     }                               
 
     // The file contains hexadecimal integers as text data, not just raw hex bytes!

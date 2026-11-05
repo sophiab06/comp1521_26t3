@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     // Check correct num command line arguments
     if (argc != 2) {
         fprintf(stderr, "Needs 1 user-inputted argument - the input file name!\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     // Open the file with name given as command line arg 1
@@ -22,14 +22,14 @@ int main(int argc, char *argv[]) {
     // Error check - did fopen work?
     if (file == NULL) {
         perror("main");             // prints the error reason indicated by errno under the hood (set by fopen)!
-        exit(1);                    // exit(); is often better than return - completely exits the program at the point
+        exit(EXIT_FAILURE);         // exit(); is often better than return - completely exits the program at the point
     }                               // the error occured, even if it's 10 function call deep! Results in neater code.
 
     // Reads in the first line of the opened text file, with error-checking!
     char *input = malloc(sizeof(char) * (MAX_LINE_LENGTH + 1));
     if (fgets(input, MAX_LINE_LENGTH + 1, file) == NULL) {
         fprintf(stderr, "fgets: failed to read in string from file\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
     // We don't need an extra new line except for if we have fully filled the buffer, as
@@ -41,6 +41,7 @@ int main(int argc, char *argv[]) {
     }
 
     fclose(file);
+    free(input);
 
     return 0;
 }
