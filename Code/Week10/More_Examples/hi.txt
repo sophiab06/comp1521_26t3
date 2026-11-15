@@ -1,0 +1,2 @@
+hello there everybody
+if you are seeing this in the terminal, then the cat process stuff is working
