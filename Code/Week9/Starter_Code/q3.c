@@ -1,4 +1,4 @@
-// Completed implementation of q3 from the Week 9 Tutorial, where
+// Incomplete implementation of q3 from the Week 9 Tutorial, where
 // we print out the file modes and file size of a bunch of given files
 // using the stat() syscall!
 

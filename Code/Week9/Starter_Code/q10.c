@@ -1,4 +1,4 @@
-// Completed implementation of printing out the contents of the file \
+// Incomplete implementation of printing out the contents of the file \
 // $HOME/.diary to the terminal!
 
 #include <stdlib.h>

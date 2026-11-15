@@ -1,4 +1,4 @@
-// Completed implementation of q8 in the Week 9 tutorial, which aims
+// Incomplete implementation of q8 in the Week 9 tutorial, which aims
 // to count the number of codepoints in an assumed valid UTF-8 string.
 
 #include <stdio.h>
@@ -28,33 +28,5 @@ int main(int argc, char *argv[]) {
 // Counts the number of codepoints in a UTF 8 string. Assumes all
 // of the codepoints are valid. Returns the number of codepoints.
 int count_num_codepoints(char *utf_string) {
-    int index = 0;      // index of current byte
-    int count = 0;      // number of codepoints
-
-    while (utf_string[index] != '\0') {
-        char curr_byte = utf_string[index];
-
-        // Check if ASCII byte - in form 0xxx xxxx
-        if ((curr_byte & ASCII_BYTE_MASK) == ASCII_BYTE_OUTPUT) {
-            index++;
-        } 
-        // Check if two-byte sequence - header byte in form 110x xxxx
-        else if ((curr_byte & TWO_BYTE_HEADER_MASK) == TWO_BYTE_HEADER_OUTPUT) {
-            index += 2;
-        } 
-        // Check if three-byte sequence - header byte in form 1110 xxxx
-        else if ((curr_byte & THREE_BYTE_HEADER_MASK) == THREE_BYTE_HEADER_OUTPUT) {
-            index += 3;
-        } 
-        // Only other option (assuming valid sequence) is four-byte 
-        // sequence - header byte in form 1111 0xxx
-        else {
-            index += 4;
-        }
-
-        // Read one codepoint per loop.
-        count++;
-    }
-
-    return count;
+    // TO DO: Complete!
 }
