@@ -49,6 +49,9 @@ The three available functions are `posix_spawn_file_actions_addopen`, `posix_spa
 
 A code example of how we can add file actions is presented below, without launching
 the actual process.
+
+<div style="page-break-after: always;"></div>
+
 ```C
 #include <spawn.h>
 #include <stdio.h>
@@ -73,7 +76,8 @@ int main(void) {
     // Reassign file descriptor 9 (currently referring to test.txt) to
     // refer to the same file as file descriptor 0 (terminal input). Any 
     // interactions that used either file descriptor 9 or a FILE * that 
-    // contained file descriptor 9 inside, now interact with the terminal // input instead, in the child.
+    // contained file descriptor 9 inside, now interact with the terminal 
+    // input instead, in the child.
     posix_spawn_file_actions_adddup2(&file_actions, 0, 9);
 
     // Close the file associated with file descriptor 8 in the
@@ -91,10 +95,14 @@ Something to note - if we call `close` or `dup2` on a certain file descriptor, w
 
 Throughout the course we've also mainly been working with `FILE *`, not file descriptors. How do we account for this? Well, we can use the function `fileno` to get the file descriptor associated with a `FILE *`, and we can use `fdopen` to set up a FILE struct for a given file descriptor, and let us use functions like `fopen` on something we initially opened as a file descriptor.
 
+<div style="page-break-after: always;"></div>
+
 ## How Do Pipes Work??
 The entire idea behind pipes in Unix-based systems is to let processes communicate with each other speedily. One end works as a write end, one end works as a read end. Information that is written into the write end will be read sequentially from the read end. The system is treated as a pair of files, open together; each process with the pipe has either the write end open or the read end open, not both. Keeping both ends open will lead only to bugs and deadlocks, and one pipe is not enough for a process to both send and receive info from another process. You'd need to set up two pipes for that (or use an alternate way of communicating between two processes, e.g sockets, which aren't covered in the course)!
 
 We use the special `pipe` function (documentation: `man 3 pipe`) to set up a pipe between a parent process and its child process. More details on using them are in the next section, but a brief code snippet featuring them are below!
+
+<div style="page-break-after: always;"></div>
 
 ```C
 // A demonstration of how pipe files work within one process.
@@ -166,6 +174,8 @@ both the parent and child process, child process only, and parent process only, 
 |   | Close the unused write end |    |
 
 Now that we've split up what needs to get done per category, we can use our checklist of when file actions need to happen in our program to set everything up! (Note: I'm ignoring a lot of error handling to simplify the code a bit, and avoid 20 thousand if statements. Please actually include those in your code though!)
+
+<div style="page-break-after: always;"></div>
 
 ```C
 #include <stdio.h>
