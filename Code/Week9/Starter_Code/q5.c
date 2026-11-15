@@ -1,4 +1,5 @@
 // Completed implementation of q5 of the tutorial, which changes 
+// the permissions of the file to remove public writing permissions!
 
 #include <stdio.h>
 #include <sys/stat.h>
