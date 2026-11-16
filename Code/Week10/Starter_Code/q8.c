@@ -1,20 +1,30 @@
-// Broken version of a program that avoids race conditions while adding data
+// Fixed version of a program that avoids race conditions while adding data
 // together!
 
 #include <stdio.h>
 #include <pthread.h>
+#include <stdatomic.h>
 
+// // Fix option a: make the global_total an atomic int!
+// atomic_int global_total = 0;
 int global_total = 0;
 
-// TO DO: FIX TO PREVENT RACE CONSITIONS!
+// Fix option b: use mutexes!
+pthread_mutex_t mutex_adding = PTHREAD_MUTEX_INITIALIZER;
 
 void *add_5000_to_counter(void *data) {
     for (int i = 0; i < 5000; i++) {
         // sleep for 1 nanosecond
         nanosleep (&(struct timespec){.tv_nsec = 1}, NULL);
 
+        // Incrementing is the issue here causing race
+        // conditions due to needing to access the global memory;
+        // set up mutexes around here!
+
+        pthread_mutex_lock(&mutex_adding);
         // increment the global total by 1
         global_total++;
+        pthread_mutex_unlock(&mutex_adding);
     }
 
     return NULL;

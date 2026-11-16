@@ -1,10 +1,8 @@
-// Broken version of thread-spawning program that actually waits for
+// Fixed version of thread-spawning program that actually waits for
 // a given thread to stop executing!
 
 #include <stdio.h>
 #include <pthread.h>
-
-// TO DO: FIX
 
 void *thread_run(void *data) {
     printf("Hello from thread!\n");
@@ -21,6 +19,11 @@ int main(void) {
         NULL        // data we want to pass to the thread -- this will be
                     // given in the `void *data` argument above
     );
+
+    // ANSWER - we need to wait for the thread
+    // to finish running!
+
+    pthread_join(thread, NULL);
 
     return 0;
 }
